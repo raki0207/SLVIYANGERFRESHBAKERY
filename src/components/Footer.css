@@ -1,0 +1,495 @@
+/* Footer Styles */
+.footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 0;
+    z-index: 1000;
+    margin: 0;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Company Logo Section */
+.company-logo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.camera-lens {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #7bb3a5;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lens-inner {
+    width: 20px;
+    height: 20px;
+    background-color: #7bb3a5;
+    border-radius: 50%;
+}
+
+.logo-text {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 8px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+}
+
+.logo-text-top {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.logo-text-bottom {
+    display: block;
+}
+
+.company-name {
+    color: #7bb3a5;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    margin-left: 10px;
+}
+
+.company-description {
+    color: white;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    text-align: left;
+}
+
+/* Footer Headings */
+.footer-heading {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+    letter-spacing: 1px;
+}
+
+/* Useful Links */
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-list li {
+    margin-bottom: 12px;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #ffcc00;
+}
+
+/* Address & Contact */
+.address-info {
+    margin-bottom: 20px;
+}
+
+.address-info p {
+    color: white;
+    font-size: 14px;
+    margin: 0 0 5px 0;
+    line-height: 1.4;
+}
+
+.contact-info {
+    margin-bottom: 25px;
+    text-align: left;
+    /* margin-left: 70px; */
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.contact-label {
+    color: #7bb3a5;
+    font-weight: bold;
+    font-size: 14px;
+    min-width: 60px;
+}
+
+.contact-value {
+    color: white;
+    font-size: 14px;
+}
+
+/* Social Media Icons */
+.social-media {
+    /* margin-left: 70px; */
+    display: flex;
+    gap: 12px;
+}
+
+.social-icons {
+    width: 40px;
+    height: 40px;
+    background-color: #7bb3a5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-icons:hover {
+    transform: translateY(-2px);
+    background-color: #e6b800;
+}
+
+.social-icons svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+/* Footer Divider */
+.footer-divider {
+    height: 1px;
+    background-color: #333333;
+    margin: 20px 0;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.copyright {
+    color: white;
+    font-size: 14px;
+    margin: 0;
+}
+
+.copyright-company {
+    color: #7bb3a5;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        display: none; /* Hide all footer content on mobile */
+    }
+
+    .footer-container {
+        padding: 20px 15px 15px;
+    }
+
+    .footer-divider {
+        display: none; /* Hide divider on mobile since only copyright is shown */
+    }
+
+    .footer-bottom {
+        padding: 15px 0; /* Reduce padding on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        padding: 20px 10px 10px;
+    }
+
+    .company-name {
+        font-size: 20px;
+    }
+
+    .footer-heading {
+        font-size: 14px;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .contact-label {
+        min-width: auto;
+    }
+}
+
+/* Floating Action Buttons */
+.floating-buttons {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1001;
+}
+
+.floating-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    animation: fadeIn 0.3s ease;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+}
+
+
+
+.floating-btn svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+}
+
+.whatsapp-btn:hover {
+    background: linear-gradient(135deg, #20b358 0%, #0e6b60 100%);
+}
+
+/* Phone Call Button */
+.phone-btn {
+    background: linear-gradient(135deg, #7bb3a5 0%, #5a8f82 100%);
+    color: white;
+}
+
+.phone-btn:hover {
+    background: linear-gradient(135deg, #5a8f82 0%, #4a7a6f 100%);
+}
+
+/* Toggle Button */
+.toggle-btn {
+    background: linear-gradient(135deg, #ffcc00 0%, #e6b800 100%);
+    color: #1a1a1a;
+}
+
+.toggle-btn:hover {
+    background: linear-gradient(135deg, #e6b800 0%, #cc9900 100%);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+}
+
+@keyframes rotateClockwise {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateCounterClockwise {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.rotating-clockwise {
+    animation: rotateClockwise 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.rotating-counter-clockwise {
+    animation: rotateCounterClockwise 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes emergeFromStar {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    20% {
+        opacity: 0.3;
+        transform: scale(0.3) rotate(72deg);
+    }
+    40% {
+        opacity: 0.6;
+        transform: scale(0.6) rotate(144deg);
+    }
+    60% {
+        opacity: 0.8;
+        transform: scale(0.8) rotate(216deg);
+    }
+    80% {
+        opacity: 0.9;
+        transform: scale(0.9) rotate(288deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+@keyframes returnToStar {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(360deg);
+    }
+    20% {
+        opacity: 0.9;
+        transform: scale(0.9) rotate(288deg);
+    }
+    40% {
+        opacity: 0.8;
+        transform: scale(0.8) rotate(216deg);
+    }
+    60% {
+        opacity: 0.6;
+        transform: scale(0.6) rotate(144deg);
+    }
+    80% {
+        opacity: 0.3;
+        transform: scale(0.3) rotate(72deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+}
+
+.emerging-from-star {
+    animation: emergeFromStar 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.returning-to-star {
+    animation: returnToStar 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .floating-buttons {
+        right: 20px;
+        bottom: 20px;
+        gap: 12px;
+    }
+
+    .floating-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .floating-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-buttons {
+        right: 15px;
+        bottom: 15px;
+        gap: 10px;
+    }
+
+    .floating-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    .floating-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+}

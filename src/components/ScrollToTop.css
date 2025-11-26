@@ -1,0 +1,98 @@
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 101px; /* 30px (toggle bottom) + 56px (toggle height) + 15px (gap) */
+  right: 30px;
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, #7bb3a5 0%, #5a8f82 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Move up when floating buttons are visible */
+.scroll-to-top-btn.moved-up {
+  bottom: 243px; /* 30px + 56px (toggle) + 15px + 56px (phone) + 15px + 56px (whatsapp) + 15px (gap) */
+}
+
+.scroll-to-top-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(135deg, #5a8f82 0%, #4a7a6f 100%);
+}
+
+.scroll-to-top-btn:active {
+  transform: translateY(-2px);
+}
+
+.scroll-to-top-btn svg {
+  width: 24px;
+  height: 24px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .scroll-to-top-btn {
+    bottom: 90px; /* 20px (toggle bottom) + 50px (toggle height) + 12px (gap) */
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .scroll-to-top-btn.moved-up {
+    bottom: 214px; /* 20px + 50px (toggle) + 12px + 50px (phone) + 12px + 50px (whatsapp) + 12px (gap) */
+  }
+
+  .scroll-to-top-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-to-top-btn {
+    bottom: 80px; /* 15px (toggle bottom) + 45px (toggle height) + 10px (gap) */
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .scroll-to-top-btn.moved-up {
+    bottom: 185px; /* 15px + 45px (toggle) + 10px + 45px (phone) + 10px + 45px (whatsapp) + 10px (gap) */
+  }
+
+  .scroll-to-top-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
