@@ -4,6 +4,7 @@ import { FaShoppingCart, FaUserCircle, FaHeart } from 'react-icons/fa';
 import { useLikedProducts } from '../context/LikedProductsContext';
 import { useCart } from '../context/CartContext';
 import { productAPI } from '../services/api';
+import { getImageUrl } from '../utils/imageUtils';
 import './Navbar.css';
 
 const Navbar = ({ onLoginClick, isLoggedIn, onLogout, isAdminSession = false }) => {
@@ -250,7 +251,7 @@ const Navbar = ({ onLoginClick, isLoggedIn, onLogout, isAdminSession = false }) 
                           className="search-suggestion-item"
                           onClick={() => handleSuggestionClick(product)}
                         >
-                          <img src={product.image} alt={product.name} className="suggestion-image" />
+                          <img src={getImageUrl(product.image)} alt={product.name} className="suggestion-image" />
                           <div className="suggestion-info">
                             <div className="suggestion-name">{product.name}</div>
                             <div className="suggestion-category">{product.category}</div>

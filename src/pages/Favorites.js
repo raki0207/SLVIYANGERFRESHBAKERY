@@ -3,6 +3,7 @@ import { useLikedProducts } from '../context/LikedProductsContext';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { getProductDiscount, hasDiscount } from '../utils/discountUtils';
+import { getImageUrl } from '../utils/imageUtils';
 import { FaHeart, FaLock, FaHourglassHalf, FaStar } from 'react-icons/fa';
 import './Favorites.css';
 
@@ -106,7 +107,7 @@ const Favorites = () => {
             return (
               <div key={product.id} className={`favorite-card ${product.inStock === false ? 'sold-out' : ''}`}>
                 <div className="favorite-image">
-                  <img src={product.image} alt={product.name} className="favorite-img" />
+                  <img src={getImageUrl(product.image)} alt={product.name} className="favorite-img" />
                   {product.inStock === false && (
                     <div className="sold-out-overlay">
                       <div className="sold-out-badge">SOLD OUT</div>
@@ -214,7 +215,7 @@ const Favorites = () => {
             
             <div className="modal-header">
               <div className="modal-icon">
-                <img src={selectedProduct.image} alt={selectedProduct.name} className="modal-product-img" />
+                <img src={getImageUrl(selectedProduct.image)} alt={selectedProduct.name} className="modal-product-img" />
               </div>
               <div className="modal-title-section">
                 <span className="modal-category">{selectedProduct.category}</span>

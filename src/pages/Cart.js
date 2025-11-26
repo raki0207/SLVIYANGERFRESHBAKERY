@@ -3,6 +3,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
 import { getProductDiscount, hasDiscount } from '../utils/discountUtils';
+import { getImageUrl } from '../utils/imageUtils';
 import { FaShoppingCart, FaLock, FaHourglassHalf, FaStar, FaClipboard, FaCheck, FaTrash } from 'react-icons/fa';
 import './Cart.css';
 
@@ -151,7 +152,7 @@ const Cart = () => {
                 return (
                   <div key={item.id} className="cart-item">
                     <div className="item-icon">
-                      <img src={item.image} alt={item.name} className="cart-item-img" />
+                      <img src={getImageUrl(item.image)} alt={item.name} className="cart-item-img" />
                       {itemHasDiscount && (
                         <div className="cart-discount-badge">{getProductDiscount(item)}%</div>
                       )}

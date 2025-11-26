@@ -4,6 +4,7 @@ import { FaShoppingBag, FaBoxOpen, FaClock, FaCheckCircle, FaTimesCircle } from 
 import { useAuth } from '../context/AuthContext';
 import { db } from '../firebase/config';
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import { getImageUrl } from '../utils/imageUtils';
 
 const Orders = () => {
   const { currentUser } = useAuth();
@@ -220,7 +221,7 @@ const Orders = () => {
                     <div className="orders__items-list">
                       {order.items?.map((item, index) => (
                         <div key={index} className="orders__item">
-                          <img src={item.image} alt={item.name} className="orders__item-image" />
+                          <img src={getImageUrl(item.image)} alt={item.name} className="orders__item-image" />
                           <div className="orders__item-details">
                             <h5>{item.name}</h5>
                             <p className="orders__item-category">{item.category}</p>

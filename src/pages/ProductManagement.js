@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { productAPI } from '../services/api';
+import { getImageUrl } from '../utils/imageUtils';
 import { FaEdit, FaTrash, FaPlus, FaSearch, FaTimes, FaSave, FaSpinner } from 'react-icons/fa';
 import './ProductManagement.css';
 
@@ -310,7 +311,7 @@ const ProductManagement = () => {
                     <tr key={product.id}>
                       <td>
                         <img 
-                          src={product.image} 
+                          src={getImageUrl(product.image)} 
                           alt={product.name} 
                           className="pm-product-image"
                           onError={(e) => {

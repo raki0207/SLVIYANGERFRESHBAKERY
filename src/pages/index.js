@@ -8,6 +8,7 @@ import { useLikedProducts } from '../context/LikedProductsContext';
 import { useCart } from '../context/CartContext';
 import { getProductDiscount, hasDiscount } from '../utils/discountUtils';
 import { useJustArrivedProducts, useJustBakedProducts } from '../hooks/useProducts';
+import { getImageUrl } from '../utils/imageUtils';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -60,15 +61,13 @@ const Home = () => {
     `${process.env.PUBLIC_URL}/bakerimg.png`
   ];
 
-  // Update products from API
+  // Update products from API with correct image URLs for hosting
   useEffect(() => {
     if (justArrivedProductsFromAPI && justArrivedProductsFromAPI.length > 0) {
-      // Ensure image paths are correct
+      // Fix image URLs for GitHub Pages / production hosting
       const formattedProducts = justArrivedProductsFromAPI.map(product => ({
         ...product,
-        image: product.image.startsWith('http') || product.image.startsWith('/') 
-          ? product.image 
-          : `${process.env.PUBLIC_URL}${product.image}`
+        image: getImageUrl(product.image)
       }));
       setJustArrivedProducts(formattedProducts.slice(0, 6));
     }
@@ -76,12 +75,10 @@ const Home = () => {
 
   useEffect(() => {
     if (justBakedProductsFromAPI && justBakedProductsFromAPI.length > 0) {
-      // Ensure image paths are correct
+      // Fix image URLs for GitHub Pages / production hosting
       const formattedProducts = justBakedProductsFromAPI.map(product => ({
         ...product,
-        image: product.image.startsWith('http') || product.image.startsWith('/') 
-          ? product.image 
-          : `${process.env.PUBLIC_URL}${product.image}`
+        image: getImageUrl(product.image)
       }));
       setJustBakedProducts(formattedProducts.slice(0, 8));
     }

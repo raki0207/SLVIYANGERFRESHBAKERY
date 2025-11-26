@@ -4,6 +4,7 @@ import { useLikedProducts } from '../context/LikedProductsContext';
 import { useCart } from '../context/CartContext';
 import { useProducts } from '../hooks/useProducts';
 import { getProductDiscount, hasDiscount } from '../utils/discountUtils';
+import { getImageUrl } from '../utils/imageUtils';
 import { MdFilterList, MdApps, MdMoreHoriz } from 'react-icons/md';
 import { FaCookie, FaBreadSlice, FaPepperHot } from 'react-icons/fa';
 import { GiCakeSlice, GiCroissant, GiBreadSlice, GiCupcake, GiSandwich, GiBottleVapors, GiCookie } from 'react-icons/gi';
@@ -248,7 +249,7 @@ const Products = () => {
 
         {error && !loading && (
           <div style={{ textAlign: 'center', padding: '40px 20px', color: '#ff6b6b' }}>
-            <p style={{ fontSize: '18px', marginBottom: '10px' }}>⚠️ Error loading products</p>
+            <p style={{ fontSize: '18px', marginBottom: '10px' }}>Error loading products</p>
             <p style={{ fontSize: '14px', color: '#666' }}>{error}</p>
             <p style={{ fontSize: '14px', color: '#666', marginTop: '10px' }}>Please check your backend server is running.</p>
           </div>
@@ -265,7 +266,7 @@ const Products = () => {
         {!loading && !error && filteredProducts.map(product => (
           <div key={product.id} className={`product-card ${product.inStock === false ? 'sold-out' : ''}`}>
             <div className="product-image">
-              <img src={product.image} alt={product.name} className="product-img" />
+              <img src={getImageUrl(product.image)} alt={product.name} className="product-img" />
               {product.inStock === false && (
                 <div className="sold-out-overlay">
                   <div className="sold-out-badge">SOLD OUT</div>
@@ -370,7 +371,7 @@ const Products = () => {
             
             <div className="modal-header">
               <div className="modal-icon">
-                <img src={selectedProduct.image} alt={selectedProduct.name} className="modal-product-img" />
+                <img src={getImageUrl(selectedProduct.image)} alt={selectedProduct.name} className="modal-product-img" />
               </div>
               <div className="modal-title-section">
                 <span className="modal-category">{selectedProduct.category}</span>
