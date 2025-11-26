@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SLVIYANGERFRESHBAKERY/static/css/main.de607110.css",
-    "main.js": "/SLVIYANGERFRESHBAKERY/static/js/main.32dc70a1.js",
+    "main.js": "/SLVIYANGERFRESHBAKERY/static/js/main.dcd98cd8.js",
     "static/js/453.04bdaf2d.chunk.js": "/SLVIYANGERFRESHBAKERY/static/js/453.04bdaf2d.chunk.js",
     "index.html": "/SLVIYANGERFRESHBAKERY/index.html",
     "main.de607110.css.map": "/SLVIYANGERFRESHBAKERY/static/css/main.de607110.css.map",
-    "main.32dc70a1.js.map": "/SLVIYANGERFRESHBAKERY/static/js/main.32dc70a1.js.map",
+    "main.dcd98cd8.js.map": "/SLVIYANGERFRESHBAKERY/static/js/main.dcd98cd8.js.map",
     "453.04bdaf2d.chunk.js.map": "/SLVIYANGERFRESHBAKERY/static/js/453.04bdaf2d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.de607110.css",
-    "static/js/main.32dc70a1.js"
+    "static/js/main.dcd98cd8.js"
   ]
 }
