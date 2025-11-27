@@ -423,8 +423,11 @@
   }
 
   .login-image-section {
+    flex: 0 0 250px;
     min-height: 250px;
     max-height: 250px;
+    height: 250px;
+    display: block;
   }
 
   .login-container {
@@ -443,8 +446,19 @@
   }
 
   .login-image-section {
+    flex: 0 0 200px;
     min-height: 200px;
     max-height: 200px;
+    height: 200px;
+    display: block;
+  }
+
+  .image-carousel {
+    height: 200px;
+  }
+
+  .carousel-image {
+    height: 200px;
   }
 
   .login-container {

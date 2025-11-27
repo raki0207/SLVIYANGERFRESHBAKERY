@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import Orders from './pages/Orders';
 import Favorites from './pages/Favorites';
 import ProductManagement from './pages/ProductManagement';
+import AdminOrders from './pages/AdminOrders';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LikedProductsProvider } from './context/LikedProductsContext';
 import { CartProvider } from './context/CartContext';
@@ -126,6 +127,14 @@ function AppContentInner() {
                   element={
                     <ProtectedAdminRoute>
                       <ProductManagement />
+                    </ProtectedAdminRoute>
+                  } 
+                />
+                <Route 
+                  path="/admin/orders" 
+                  element={
+                    <ProtectedAdminRoute>
+                      <AdminOrders />
                     </ProtectedAdminRoute>
                   } 
                 />

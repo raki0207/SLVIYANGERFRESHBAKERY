@@ -3,7 +3,7 @@
  * Handles all API calls to the backend server
  */
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL ;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
 
 /**
  * Generic API request handler

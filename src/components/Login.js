@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './Login.css';
 import { auth, db } from '../firebase/config';
 import { 
@@ -37,14 +37,16 @@ const Login = ({ onClose, onLoginSuccess }) => {
   const [adminAccessGranted, setAdminAccessGranted] = useState(false);
   const [adminNotice, setAdminNotice] = useState({ text: '', tone: 'info' });
 
-  const ADMIN_ACCESS_KEY = process.env.REACT_APP_ADMIN_ACCESS_KEY || 'raki-admin-panel';
+  // Ref for double-tap detection on mobile
+  const lastTapRef = useRef(0);
+
+  const ADMIN_ACCESS_KEY = process.env.REACT_APP_ADMIN_ACCESS_KEY;
 
   // Array of images for the carousel
   const images = [
-    'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&q=80',
-    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
-    'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80',
-    'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80'
+    `${process.env.PUBLIC_URL}/login-one.png`,
+    `${process.env.PUBLIC_URL}/login-two.png`,
+    `${process.env.PUBLIC_URL}/login-three.jpg`
   ];
 
   // Auto-scroll images every 3 seconds
@@ -77,6 +79,20 @@ const Login = ({ onClose, onLoginSuccess }) => {
       return next;
     });
   }, [setIsSignUp]);
+
+  // Handle double-tap for mobile devices
+  const handleDoubleTap = useCallback((e) => {
+    const currentTime = new Date().getTime();
+    const tapGap = currentTime - lastTapRef.current;
+    
+    if (tapGap < 300 && tapGap > 0) {
+      // Double tap detected
+      e.preventDefault();
+      toggleAdminMode();
+    }
+    
+    lastTapRef.current = currentTime;
+  }, [toggleAdminMode]);
 
   const handleAdminUnlock = useCallback(() => {
     if (adminSecretKey.trim() === ADMIN_ACCESS_KEY) {
@@ -332,7 +348,7 @@ const Login = ({ onClose, onLoginSuccess }) => {
         <button className="close-btn" onClick={onClose}>×</button>
         
         {/* Image Carousel Section */}
-        <div className="login-image-section" onDoubleClick={toggleAdminMode}>
+        <div className="login-image-section" onDoubleClick={toggleAdminMode} onTouchEnd={handleDoubleTap}>
           <div className="image-carousel">
             {images.map((image, index) => (
               <div

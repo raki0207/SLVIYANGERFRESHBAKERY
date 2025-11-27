@@ -197,13 +197,22 @@ const Navbar = ({ onLoginClick, isLoggedIn, onLogout, isAdminSession = false }) 
         <div className="navbar-actions">
           {/* Search Icon or Search Bar */}
           {isAdminSession && (
-            <NavLink
-              to="/admin/products"
-              className="admin-quick-link"
-              onClick={closeMobileMenu}
-            >
-              Add Product
-            </NavLink>
+            <>
+              <NavLink
+                to="/admin/products"
+                className="admin-quick-link"
+                onClick={closeMobileMenu}
+              >
+                Products
+              </NavLink>
+              <NavLink
+                to="/admin/orders"
+                className="admin-quick-link admin-orders-link"
+                onClick={closeMobileMenu}
+              >
+                Orders
+              </NavLink>
+            </>
           )}
 
           <div className="navbar-search-container" ref={searchRef}>
