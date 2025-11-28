@@ -4,7 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
 import { getProductDiscount, hasDiscount } from '../utils/discountUtils';
 import { getImageUrl } from '../utils/imageUtils';
-import { FaShoppingCart, FaLock, FaHourglassHalf, FaStar, FaClipboard, FaCheck, FaTrash } from 'react-icons/fa';
+import { isOrderingAllowed, getNextOrderingTime, getOrderingHoursRange } from '../utils/timeUtils';
+import { FaShoppingCart, FaLock, FaHourglassHalf, FaStar, FaClipboard, FaCheck, FaTrash, FaClock } from 'react-icons/fa';
 import './Cart.css';
 
 const Cart = () => {
@@ -15,6 +16,7 @@ const Cart = () => {
   const [generatedPromoCode, setGeneratedPromoCode] = useState('');
   const [appliedPromoCode, setAppliedPromoCode] = useState('');
   const [promoInput, setPromoInput] = useState('');
+  const [orderingAllowed, setOrderingAllowed] = useState(isOrderingAllowed());
 
   // Generate random promo code on component mount
   useEffect(() => {
@@ -27,6 +29,21 @@ const Cart = () => {
       return code;
     };
     setGeneratedPromoCode(generatePromoCode());
+  }, []);
+
+  // Check ordering hours periodically
+  useEffect(() => {
+    const checkOrderingHours = () => {
+      setOrderingAllowed(isOrderingAllowed());
+    };
+    
+    // Check immediately
+    checkOrderingHours();
+    
+    // Check every minute to update the UI
+    const interval = setInterval(checkOrderingHours, 60000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   const subtotal = getCartTotal();
@@ -52,6 +69,17 @@ const Cart = () => {
     if (cartItems.length === 0) {
       return; // Prevent checkout if cart is empty
     }
+    
+    // Check ordering hours before proceeding
+    if (!isOrderingAllowed()) {
+      const nextTime = getNextOrderingTime();
+      showNotification(
+        `Ordering is currently closed. Orders are accepted from 9:00 AM to 10:00 PM. Next available time: ${nextTime}`,
+        'error'
+      );
+      return;
+    }
+    
     await proceedToCheckout({
       promoCode: appliedPromoCode || null,
       discountAmount: discountAmount
@@ -231,6 +259,46 @@ const Cart = () => {
         <div className="cart-summary">
           <h2>Order Summary</h2>
           
+          {!orderingAllowed && (
+            <div className="ordering-hours-notice" style={{
+              padding: '12px 16px',
+              marginBottom: '16px',
+              backgroundColor: '#fff3cd',
+              border: '1px solid #ffc107',
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              color: '#856404'
+            }}>
+              <FaClock style={{ fontSize: '18px' }} />
+              <div style={{ flex: 1 }}>
+                <strong>Ordering Currently Closed</strong>
+                <p style={{ margin: '4px 0 0 0', fontSize: '14px' }}>
+                  Orders are accepted from {getOrderingHoursRange()}. Next available time: {getNextOrderingTime()}
+                </p>
+              </div>
+            </div>
+          )}
+          
+          {orderingAllowed && (
+            <div className="ordering-hours-info" style={{
+              padding: '8px 16px',
+              marginBottom: '16px',
+              backgroundColor: '#d4edda',
+              border: '1px solid #28a745',
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              color: '#155724',
+              fontSize: '14px'
+            }}>
+              <FaClock style={{ fontSize: '16px' }} />
+              <span>Ordering hours: {getOrderingHoursRange()}</span>
+            </div>
+          )}
+          
           <div className="summary-details">
             <div className="summary-row">
               <span>Subtotal</span>
@@ -253,11 +321,12 @@ const Cart = () => {
           </div>
 
           <button 
-            className={`checkout-btn ${cartItems.length === 0 ? 'disabled' : ''}`}
+            className={`checkout-btn ${cartItems.length === 0 || !orderingAllowed ? 'disabled' : ''}`}
             onClick={handleCheckout}
-            disabled={cartItems.length === 0}
+            disabled={cartItems.length === 0 || !orderingAllowed}
+            title={!orderingAllowed ? 'Ordering is currently closed. Orders are accepted from 9:00 AM to 10:00 PM.' : ''}
           >
-            Proceed to Checkout
+            {!orderingAllowed ? 'Ordering Closed' : 'Proceed to Checkout'}
           </button>
           
           <div className="promo-section">

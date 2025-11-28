@@ -3,6 +3,7 @@ import { db } from '../firebase/config';
 import { doc, setDoc, getDoc, deleteDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuth } from './AuthContext';
 import { useNotification } from './NotificationContext';
+import { isOrderingAllowed, getNextOrderingTime, getOrderingHoursMessage } from '../utils/timeUtils';
 
 const CartContext = createContext();
 
@@ -157,6 +158,16 @@ export const CartProvider = ({ children }) => {
 
     if (cartItems.length === 0) {
       showNotification('Your cart is empty', 'warning');
+      return;
+    }
+
+    // Check if ordering is allowed at this time
+    if (!isOrderingAllowed()) {
+      const nextTime = getNextOrderingTime();
+      showNotification(
+        `Ordering is currently closed. Orders are accepted from 9:00 AM to 10:00 PM. Next available time: ${nextTime}`,
+        'error'
+      );
       return;
     }
 
