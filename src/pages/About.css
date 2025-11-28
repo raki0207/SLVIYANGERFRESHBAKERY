@@ -665,10 +665,11 @@
     gap: 40px;
   }
   
+  /* Mobile: Two columns horizontal for specific sections */
   .values-grid,
   .team-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
   }
 
   .stats-section {
@@ -677,8 +678,74 @@
   }
 
   .why-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .specialties-grid,
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  /* Adjust card padding for smaller mobile screens */
+  .why-card,
+  .value-card,
+  .specialty-card,
+  .process-step {
+    padding: 20px 15px;
+  }
+  
+  /* Adjust icon sizes for mobile */
+  .why-icon,
+  .value-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .specialty-icon,
+  .process-icon {
+    font-size: 2.5rem;
+    margin: 15px 0;
+  }
+  
+  /* Adjust text sizes for mobile */
+  .why-card h4,
+  .value-card h3,
+  .specialty-card h3,
+  .process-step h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  
+  .why-card p,
+  .value-card p,
+  .specialty-card p,
+  .process-step p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  
+  /* Team member adjustments */
+  .team-avatar {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+  }
+  
+  .team-member h3 {
+    font-size: 1.1rem;
+  }
+  
+  .team-member p {
+    font-size: 0.85rem;
+  }
+  
+  .process-number {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    top: -12px;
   }
 
   .journey-timeline-section {
@@ -709,22 +776,8 @@
     font-size: 1rem;
     margin-bottom: 40px;
   }
-
-  .specialties-grid,
-  .process-grid {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-
-  .specialty-card,
-  .process-step {
-    padding: 30px 20px;
-  }
-
-  .specialty-icon,
-  .process-icon {
-    font-size: 2.5rem;
-  }
+  
+  /* Note: specialties-grid and process-grid are already set to 2 columns above */
 
   .touch-content h2 {
     font-size: 2rem;
